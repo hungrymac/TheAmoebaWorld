@@ -1,0 +1,5 @@
+@import "@amoeba/ui/globals.css";
+@import "tailwindcss";
+
+@source "../../../packages/ui/src/**/*.{ts,tsx}";
+@source "../**/*.{ts,tsx}";
