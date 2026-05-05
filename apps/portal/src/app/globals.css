@@ -1,0 +1,6 @@
+@import "@amoeba/ui/globals.css";
+@import "tailwindcss";
+
+/* Scan workspace UI package + this app for class names */
+@source "../../../packages/ui/src/**/*.{ts,tsx}";
+@source "../**/*.{ts,tsx}";
