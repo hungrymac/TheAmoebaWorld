@@ -1,0 +1,10 @@
+pnpm-lock.yaml
+.next
+out
+dist
+.turbo
+node_modules
+coverage
+*.min.js
+supabase/.branches
+supabase/.temp

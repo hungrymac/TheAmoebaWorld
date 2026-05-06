@@ -5,10 +5,14 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "db:generate": "pnpm --filter @amoeba/db exec drizzle-kit generate",
     "db:studio": "pnpm --filter @amoeba/db exec drizzle-kit studio"
   },
   "devDependencies": {
+    "prettier": "^3.5.3",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3"
   },

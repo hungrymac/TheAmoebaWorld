@@ -1,21 +1,13 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { signOut } from "@/actions/auth";
-import { setActiveTenant } from "@/actions/tenant";
-import { getActiveTenantId } from "@/lib/tenant/server";
+import { ActivityFeed } from "./_components/activity-feed";
+import { DashboardHeader } from "./_components/dashboard-header";
+import { KpiStrip } from "./_components/kpi-strip";
+import { ModuleLauncher } from "./_components/module-launcher";
+import { TenantPanel } from "./_components/tenant-panel";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { Button } from "@amoeba/ui/components/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@amoeba/ui/components/card";
-import { Input } from "@amoeba/ui/components/input";
-import { Label } from "@amoeba/ui/components/label";
-import { ThemeToggle } from "@amoeba/ui/components/theme-toggle";
+import { getMockWorkspaceState } from "@/lib/dashboard/mock-tenant";
+import { getActiveTenantId } from "@/lib/tenant/server";
 
 export default async function DashboardPage() {
   const supabase = await createServerSupabaseClient();
@@ -28,82 +20,66 @@ export default async function DashboardPage() {
   }
 
   const activeTenantId = await getActiveTenantId();
+  const workspace = getMockWorkspaceState(activeTenantId);
+  const userLabel = user.email ?? user.id;
 
   return (
-    <main className="mx-auto flex max-w-3xl flex-col gap-8 p-8">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">ダッシュボード</h1>
-          <p className="text-sm text-muted-foreground">
-            ログイン中: {user.email ?? user.id}
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <ThemeToggle />
-          <Button variant="outline" asChild>
-            <Link href="/">ホーム</Link>
-          </Button>
-          <form action={signOut}>
-            <Button type="submit" variant="secondary">
-              ログアウト
-            </Button>
-          </form>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-muted/40 via-background to-background">
+      <main className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <DashboardHeader
+          userLabel={userLabel}
+          orgName={workspace.orgName}
+          orgSlug={workspace.orgSlug}
+          planLabel={workspace.planLabel}
+        />
 
-      <Card>
-        <CardHeader>
-          <CardTitle>テナント切り替え</CardTitle>
-          <CardDescription>
-            所属テナントは DB の{" "}
-            <code className="rounded bg-muted px-1 py-0.5 text-xs">
-              common.tenant_memberships
-            </code>{" "}
-            と照合してから選択させるのが原則です。現段階では UUID を直接指定して Cookie{" "}
-            <code className="rounded bg-muted px-1 py-0.5 text-xs">
-              {`HttpOnly`}
-            </code>{" "}
-            に保存します。
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="mb-4 text-sm text-muted-foreground">
-            現在のアクティブテナント:{" "}
-            <span className="font-mono text-foreground">
-              {activeTenantId ?? "（未設定）"}
-            </span>
-          </p>
-          <form action={setActiveTenant} className="flex max-w-md flex-col gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="tenantId">テナント ID (UUID)</Label>
-              <Input
-                id="tenantId"
-                name="tenantId"
-                placeholder="00000000-0000-4000-8000-000000000000"
-                defaultValue={activeTenantId}
-              />
+        <section aria-labelledby="kpi-heading" className="space-y-4">
+          <div className="flex flex-wrap items-end justify-between gap-2">
+            <div>
+              <h2
+                id="kpi-heading"
+                className="text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+              >
+                ハイライト
+              </h2>
+              <p className="text-balance text-lg font-medium tracking-tight">
+                テナントに紐づくモック KPI
+              </p>
             </div>
-            <Button type="submit">テナントを適用</Button>
-          </form>
-        </CardContent>
-      </Card>
+            <p className="max-w-md text-right text-xs text-muted-foreground">
+              実データ接続後は管理会計・会議分析の集計ビューをここに載せ替えます。
+            </p>
+          </div>
+          <KpiStrip items={workspace.kpis} />
+        </section>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>アプリランチャー（プレースホルダ）</CardTitle>
-          <CardDescription>
-            Turborepo の各アプリは同一デザインシステム（@amoeba/ui）で統一します。
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-wrap gap-3">
-          <Button variant="outline" disabled>
-            会議分析（apps/meeting-analysis）
-          </Button>
-          <Button variant="outline" disabled>
-            管理会計（apps/management-accounting）
-          </Button>
-        </CardContent>
-      </Card>
-    </main>
+        <section aria-labelledby="modules-heading" className="space-y-4">
+          <div>
+            <h2
+              id="modules-heading"
+              className="text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+            >
+              アプリランチャー
+            </h2>
+            <p className="text-balance text-lg font-medium tracking-tight">
+              モジュールへ
+            </p>
+          </div>
+          <ModuleLauncher modules={workspace.modules} />
+        </section>
+
+        <div className="grid gap-8 lg:grid-cols-5">
+          <div className="space-y-8 lg:col-span-3">
+            <ActivityFeed items={workspace.activities} />
+          </div>
+          <div className="lg:col-span-2">
+            <TenantPanel
+              activeTenantId={workspace.tenantId ?? undefined}
+              seatCount={workspace.seatCount}
+            />
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import { pgSchema, pgTable, uuid, text, timestamp, numeric } from "drizzle-orm/pg-core";
+import { pgSchema, uuid, text, timestamp, numeric } from "drizzle-orm/pg-core";
 
 export const accountingSchema = pgSchema("accounting");
 
@@ -7,9 +7,7 @@ export const costCenters = accountingSchema.table("cost_centers", {
   id: uuid("id").primaryKey().defaultRandom(),
   tenantId: uuid("tenant_id").notNull(),
   name: text("name").notNull(),
-  createdAt: timestamp("created_at", { withTimezone: true })
-    .notNull()
-    .defaultNow(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
 export const journalLines = accountingSchema.table("journal_lines", {
@@ -17,7 +15,5 @@ export const journalLines = accountingSchema.table("journal_lines", {
   tenantId: uuid("tenant_id").notNull(),
   amount: numeric("amount", { precision: 18, scale: 2 }).notNull(),
   memo: text("memo"),
-  createdAt: timestamp("created_at", { withTimezone: true })
-    .notNull()
-    .defaultNow(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });

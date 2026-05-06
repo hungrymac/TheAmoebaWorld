@@ -9,4 +9,11 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-export default [...compat.extends("next/core-web-vitals", "next/typescript")];
+export default [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "max-lines": ["warn", { max: 500, skipBlankLines: true, skipComments: true }],
+    },
+  },
+];
