@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { ThemeProvider } from "@amoeba/ui/components/theme-provider";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
-      <body className="min-h-screen antialiased">{children}</body>
+    <html lang="ja" suppressHydrationWarning>
+      <body className="min-h-screen antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

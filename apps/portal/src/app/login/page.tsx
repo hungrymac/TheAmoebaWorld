@@ -12,6 +12,7 @@ import {
 } from "@amoeba/ui/components/card";
 import { Input } from "@amoeba/ui/components/input";
 import { Label } from "@amoeba/ui/components/label";
+import { ThemeToggle } from "@amoeba/ui/components/theme-toggle";
 
 type Props = {
   searchParams: Promise<{ error?: string }>;
@@ -21,7 +22,10 @@ export default async function LoginPage({ searchParams }: Props) {
   const params = await searchParams;
 
   return (
-    <main className="flex min-h-screen items-center justify-center p-6">
+    <main className="relative flex min-h-screen items-center justify-center p-6">
+      <div className="absolute end-4 top-4">
+        <ThemeToggle />
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>ログイン</CardTitle>

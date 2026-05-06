@@ -15,6 +15,7 @@ import {
 } from "@amoeba/ui/components/card";
 import { Input } from "@amoeba/ui/components/input";
 import { Label } from "@amoeba/ui/components/label";
+import { ThemeToggle } from "@amoeba/ui/components/theme-toggle";
 
 export default async function DashboardPage() {
   const supabase = await createServerSupabaseClient();
@@ -37,7 +38,8 @@ export default async function DashboardPage() {
             ログイン中: {user.email ?? user.id}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <ThemeToggle />
           <Button variant="outline" asChild>
             <Link href="/">ホーム</Link>
           </Button>
