@@ -17,7 +17,7 @@
 
 1. Node 22 以上、`pnpm` を利用してください。
 2. ルートで `pnpm install` を実行します。
-3. `.env.example` を参考に、`apps/portal/.env.local` に Supabase の URL と publishable（anon）キーを設定します。
+3. `.env.example` を参考に、`apps/portal/.env.local` に Supabase の URL と publishable（anon）キーを設定します。ダッシュボードのモジュールリンクは任意で `NEXT_PUBLIC_MEETING_APP_URL` / `NEXT_PUBLIC_ACCOUNTING_APP_URL` を設定できます（未設定時は localhost:3001 / 3002）。
 4. Supabase に `supabase/migrations/20260505120000_init_amoeba_schemas.sql` を適用します（CLI の `db push` または SQL エディタ）。
 5. `pnpm dev` で PoC を起動します（既定では portal がポート 3000）。
 
