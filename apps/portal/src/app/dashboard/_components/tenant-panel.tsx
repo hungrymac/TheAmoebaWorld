@@ -17,7 +17,7 @@ type TenantPanelProps = {
 
 export function TenantPanel({ activeTenantId, seatCount }: TenantPanelProps) {
   return (
-    <Card className="border-muted/60 shadow-sm">
+    <Card className="border-muted-translucent shadow-sm">
       <CardHeader>
         <CardTitle className="text-lg">テナントとメンバー</CardTitle>
         <CardDescription>

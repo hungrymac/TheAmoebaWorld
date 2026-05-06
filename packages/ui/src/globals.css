@@ -33,26 +33,97 @@
   --radius: 0.5rem;
 }
 
+/* 背景は純黒。カード／ポップオーバーも同色。区切りは border / muted で確保 */
 .dark {
-  --color-background: oklch(14.5% 0 0);
-  --color-foreground: oklch(98.5% 0 0);
-  --color-card: oklch(14.5% 0 0);
-  --color-card-foreground: oklch(98.5% 0 0);
-  --color-popover: oklch(14.5% 0 0);
-  --color-popover-foreground: oklch(98.5% 0 0);
-  --color-primary: oklch(98.5% 0 0);
-  --color-primary-foreground: oklch(20.5% 0 0);
-  --color-secondary: oklch(26.9% 0 0);
-  --color-secondary-foreground: oklch(98.5% 0 0);
-  --color-muted: oklch(26.9% 0 0);
-  --color-muted-foreground: oklch(70.8% 0 0);
-  --color-accent: oklch(26.9% 0 0);
-  --color-accent-foreground: oklch(98.5% 0 0);
+  --color-background: oklch(0% 0 0);
+  --color-foreground: oklch(90% 0 0);
+  --color-card: oklch(0% 0 0);
+  --color-card-foreground: oklch(90% 0 0);
+  --color-popover: oklch(0% 0 0);
+  --color-popover-foreground: oklch(90% 0 0);
+  --color-primary: oklch(92% 0 0);
+  --color-primary-foreground: oklch(12% 0 0);
+  --color-secondary: oklch(14% 0 0);
+  --color-secondary-foreground: oklch(90% 0 0);
+  --color-muted: oklch(14% 0 0);
+  --color-muted-foreground: oklch(62% 0 0);
+  --color-accent: oklch(14% 0 0);
+  --color-accent-foreground: oklch(90% 0 0);
   --color-destructive: oklch(57.7% 0.245 27.325);
-  --color-destructive-foreground: oklch(98.5% 0 0);
-  --color-border: oklch(26.9% 0 0);
-  --color-input: oklch(26.9% 0 0);
-  --color-ring: oklch(55.6% 0 0);
+  --color-destructive-foreground: oklch(92% 0 0);
+  --color-border: oklch(24% 0 0);
+  --color-input: oklch(18% 0 0);
+  --color-ring: oklch(58% 0 0);
+}
+
+/*
+ * Tailwind v4 は `from-muted/40` のようにテーマ色＋透明度のユーティリティを
+ * ビルド時のライト値に固定することがある。`.dark` で CSS 変数を上書きしても
+ * グラデーションや bg-muted/xx が明るいまま残るため、変数参照のユーティリティを別途定義する。
+ */
+@layer utilities {
+  .bg-shell-gradient {
+    background-image: linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--color-muted) 40%, transparent),
+      var(--color-background) 45%,
+      var(--color-background)
+    );
+  }
+
+  .bg-kpi-tile-gradient {
+    background-image: linear-gradient(
+      to bottom,
+      var(--color-card),
+      color-mix(in oklch, var(--color-muted) 30%, transparent)
+    );
+  }
+
+  .bg-card-translucent {
+    background-color: color-mix(in oklch, var(--color-card) 80%, transparent);
+  }
+
+  .bg-muted-translucent-40 {
+    background-color: color-mix(in oklch, var(--color-muted) 40%, transparent);
+  }
+
+  .bg-muted-translucent-30 {
+    background-color: color-mix(in oklch, var(--color-muted) 30%, transparent);
+  }
+
+  .bg-muted-translucent-20 {
+    background-color: color-mix(in oklch, var(--color-muted) 20%, transparent);
+  }
+
+  .bg-muted-translucent-10 {
+    background-color: color-mix(in oklch, var(--color-muted) 10%, transparent);
+  }
+
+  .border-muted-translucent {
+    border-color: color-mix(in oklch, var(--color-muted) 60%, transparent);
+  }
+
+  .bg-primary-translucent-15 {
+    background-color: color-mix(in oklch, var(--color-primary) 15%, transparent);
+  }
+
+  .bg-muted-foreground-translucent-10 {
+    background-color: color-mix(
+      in oklch,
+      var(--color-muted-foreground) 10%,
+      transparent
+    );
+  }
+
+  .text-foreground-translucent-80 {
+    color: color-mix(in oklch, var(--color-foreground) 80%, transparent);
+  }
+}
+
+@media (hover: hover) {
+  .hover\:bg-muted-translucent-30:hover {
+    background-color: color-mix(in oklch, var(--color-muted) 30%, transparent);
+  }
 }
 
 body {

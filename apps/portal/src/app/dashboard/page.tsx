@@ -24,7 +24,7 @@ export default async function DashboardPage() {
   const userLabel = user.email ?? user.id;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-muted/40 via-background to-background">
+    <div className="min-h-screen bg-shell-gradient">
       <main className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
         <DashboardHeader
           userLabel={userLabel}
