@@ -22,7 +22,7 @@ export function KpiStrip({ items }: KpiStripProps) {
       {items.map((kpi) => (
         <div
           key={kpi.label}
-          className="group relative overflow-hidden rounded-xl border bg-gradient-to-b from-card to-muted/30 p-5 shadow-sm"
+          className="group relative overflow-hidden rounded-xl border bg-kpi-tile-gradient p-5 shadow-sm"
         >
           <div className="flex items-start justify-between gap-3">
             <p className="text-sm font-medium text-muted-foreground">{kpi.label}</p>

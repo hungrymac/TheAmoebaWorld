@@ -37,7 +37,7 @@ export function ModuleLauncher({ modules }: ModuleLauncherProps) {
       {modules.map((mod) => (
         <Card
           key={mod.id}
-          className="overflow-hidden border-muted/60 shadow-sm transition-shadow hover:shadow-md"
+          className="overflow-hidden border-muted-translucent shadow-sm transition-shadow hover:shadow-md"
         >
           <CardHeader className="flex flex-row items-start gap-4 space-y-0 pb-2">
             <ModuleIcon id={mod.id} />
@@ -54,12 +54,12 @@ export function ModuleLauncher({ modules }: ModuleLauncherProps) {
             </div>
           </CardHeader>
           <CardContent className="pb-4">
-            <div className="rounded-lg border bg-muted/40 px-4 py-3">
+            <div className="rounded-lg border bg-muted-translucent-40 px-4 py-3">
               <p className="text-xs text-muted-foreground">{mod.statLabel}</p>
               <p className="text-lg font-semibold tabular-nums">{mod.statValue}</p>
             </div>
           </CardContent>
-          <CardFooter className="border-t bg-muted/20 pt-4">
+          <CardFooter className="border-t bg-muted-translucent-20 pt-4">
             <Button variant="default" className="w-full sm:w-auto" asChild>
               <Link href={mod.href} target="_blank" rel="noreferrer">
                 モジュールを開く
