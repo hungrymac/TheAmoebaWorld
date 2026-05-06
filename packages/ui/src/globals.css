@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Match preset darkMode: "class" — html/body gets .dark from next-themes */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --font-sans: ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);

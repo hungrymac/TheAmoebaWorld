@@ -1,10 +1,14 @@
 import Link from "next/link";
 
 import { Button } from "@amoeba/ui/components/button";
+import { ThemeToggle } from "@amoeba/ui/components/theme-toggle";
 
 export default function MeetingAnalysisHome() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-8">
+    <main className="relative flex min-h-screen flex-col items-center justify-center gap-6 p-8">
+      <div className="absolute end-4 top-4">
+        <ThemeToggle />
+      </div>
       <h1 className="text-2xl font-semibold">会議分析モジュール</h1>
       <p className="text-muted-foreground">
         共通 UI（@amoeba/ui）を参照したスタブです。
