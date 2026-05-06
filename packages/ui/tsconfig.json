@@ -7,5 +7,5 @@
       "@amoeba/ui/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "tailwind.preset.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tailwind.preset.ts", "vitest.config.ts"]
 }

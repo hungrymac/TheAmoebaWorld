@@ -60,9 +60,7 @@ export default async function DashboardPage() {
               common.tenant_memberships
             </code>{" "}
             と照合してから選択させるのが原則です。現段階では UUID を直接指定して Cookie{" "}
-            <code className="rounded bg-muted px-1 py-0.5 text-xs">
-              {`HttpOnly`}
-            </code>{" "}
+            <code className="rounded bg-muted px-1 py-0.5 text-xs">{`HttpOnly`}</code>{" "}
             に保存します。
           </CardDescription>
         </CardHeader>

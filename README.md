@@ -4,14 +4,14 @@
 
 ## 構成
 
-| パス | 役割 |
-|------|------|
-| `apps/portal` | 認証・テナント切り替えの基盤（Next.js App Router + Supabase SSR） |
-| `apps/meeting-analysis` | 会議分析モジュール（スタブ） |
-| `apps/management-accounting` | 管理会計モジュール（スタブ） |
-| `packages/ui` | Shadcn 互換の共通 UI（Tailwind v4） |
-| `packages/db` | Drizzle ORM によるスキーマ（`common` / `meeting` / `accounting`） |
-| `supabase/migrations` | Postgres スキーマ分割・RLS のマイグレーション SQL |
+| パス                         | 役割                                                              |
+| ---------------------------- | ----------------------------------------------------------------- |
+| `apps/portal`                | 認証・テナント切り替えの基盤（Next.js App Router + Supabase SSR） |
+| `apps/meeting-analysis`      | 会議分析モジュール（スタブ）                                      |
+| `apps/management-accounting` | 管理会計モジュール（スタブ）                                      |
+| `packages/ui`                | Shadcn 互換の共通 UI（Tailwind v4）                               |
+| `packages/db`                | Drizzle ORM によるスキーマ（`common` / `meeting` / `accounting`） |
+| `supabase/migrations`        | Postgres スキーマ分割・RLS のマイグレーション SQL                 |
 
 ## セットアップ
 
@@ -25,7 +25,12 @@
 
 - `pnpm dev` — 全パッケージの dev（Turbo）
 - `pnpm build` — ビルド
+- `pnpm lint` — 全パッケージの ESLint
+- `pnpm test` — 全パッケージのテスト（共有パッケージは Vitest）
+- `pnpm format` / `pnpm format:check` — Prettier
 - `pnpm --filter @amoeba/portal dev` — ポータルのみ
+
+開発方針（行数目安・セキュリティ・テストの期待値）は [docs/ENGINEERING.md](./docs/ENGINEERING.md) を参照してください。
 
 ## セキュリティメモ（マルチテナント）
 

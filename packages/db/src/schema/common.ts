@@ -7,9 +7,7 @@ export const tenants = commonSchema.table("tenants", {
   tenantId: uuid("tenant_id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
   slug: text("slug").notNull(),
-  createdAt: timestamp("created_at", { withTimezone: true })
-    .notNull()
-    .defaultNow(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
 /**
@@ -25,12 +23,8 @@ export const profiles = commonSchema.table(
     userId: uuid("user_id").notNull(),
     displayName: text("display_name"),
     avatarUrl: text("avatar_url"),
-    createdAt: timestamp("created_at", { withTimezone: true })
-      .notNull()
-      .defaultNow(),
-    updatedAt: timestamp("updated_at", { withTimezone: true })
-      .notNull()
-      .defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => ({
     pk: primaryKey({ columns: [t.tenantId, t.userId] }),
@@ -45,9 +39,7 @@ export const tenantMemberships = commonSchema.table(
       .references(() => tenants.tenantId, { onDelete: "cascade" }),
     userId: uuid("user_id").notNull(),
     role: text("role").notNull().default("member"),
-    createdAt: timestamp("created_at", { withTimezone: true })
-      .notNull()
-      .defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => ({
     pk: primaryKey({ columns: [t.tenantId, t.userId] }),

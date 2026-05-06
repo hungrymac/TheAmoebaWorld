@@ -10,9 +10,7 @@ export default function HomePage() {
         <ThemeToggle />
       </div>
       <div className="text-center">
-        <h1 className="text-3xl font-semibold tracking-tight">
-          Amoeba SaaS Platform
-        </h1>
+        <h1 className="text-3xl font-semibold tracking-tight">Amoeba SaaS Platform</h1>
         <p className="mt-2 text-muted-foreground">
           ポータルへ進むにはログインしてください。
         </p>
