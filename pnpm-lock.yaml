@@ -20,9 +20,15 @@ importers:
       '@amoeba/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      lucide-react:
+        specifier: ^0.511.0
+        version: 0.511.0(react@19.2.5)
       next:
         specifier: ^15.3.2
         version: 15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react:
         specifier: ^19.1.0
         version: 19.2.5
@@ -63,9 +69,15 @@ importers:
       '@amoeba/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      lucide-react:
+        specifier: ^0.511.0
+        version: 0.511.0(react@19.2.5)
       next:
         specifier: ^15.3.2
         version: 15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react:
         specifier: ^19.1.0
         version: 19.2.5
@@ -115,9 +127,15 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.49.8
         version: 2.105.3
+      lucide-react:
+        specifier: ^0.511.0
+        version: 0.511.0(react@19.2.5)
       next:
         specifier: ^15.3.2
         version: 15.5.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react:
         specifier: ^19.1.0
         version: 19.2.5
