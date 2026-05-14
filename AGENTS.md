@@ -6,12 +6,12 @@
 
 pnpm + Turborepo モノレポで構成されたマルチテナント SaaS ポータル。詳細は `README.md` と `docs/ENGINEERING.md` を参照。
 
-| サービス | ポート | 起動コマンド |
-|---|---|---|
-| Portal (メイン) | 3000 | `pnpm --filter @amoeba/portal dev` |
-| Meeting Analysis (スタブ) | 3001 | `pnpm --filter @amoeba/meeting-analysis dev` |
-| Management Accounting (スタブ) | 3002 | `pnpm --filter @amoeba/management-accounting dev` |
-| Supabase (Auth + Postgres) | 54321/54322 | `npx supabase start` |
+| サービス                       | ポート      | 起動コマンド                                      |
+| ------------------------------ | ----------- | ------------------------------------------------- |
+| Portal (メイン)                | 3000        | `pnpm --filter @amoeba/portal dev`                |
+| Meeting Analysis (スタブ)      | 3001        | `pnpm --filter @amoeba/meeting-analysis dev`      |
+| Management Accounting (スタブ) | 3002        | `pnpm --filter @amoeba/management-accounting dev` |
+| Supabase (Auth + Postgres)     | 54321/54322 | `npx supabase start`                              |
 
 全サービス一括起動: `pnpm dev`（Turborepo 経由で 3 アプリ同時起動）
 
